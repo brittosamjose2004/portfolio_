@@ -10,7 +10,7 @@ const NeuralKnot = () => {
 
     // Generate points on a Torus Knot for "Complex Geometry"
     const particleData = useMemo(() => {
-        const count = 4000; // More points for density
+        const count = 1500; // Reduced for performance
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
         const baseColor = new THREE.Color("#bb86fc");
@@ -120,7 +120,7 @@ const NeuralKnot = () => {
 const Scene3D = () => {
     return (
         <div className="scene-container">
-            <Canvas camera={{ position: [0, 0, 14], fov: 60 }}>
+            <Canvas camera={{ position: [0, 0, 14], fov: 60 }} dpr={[1, 1.5]}>
                 <fog attach="fog" args={['#050510', 8, 25]} />
                 <NeuralKnot />
             </Canvas>
