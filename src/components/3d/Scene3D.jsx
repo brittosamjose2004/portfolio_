@@ -125,7 +125,7 @@ const NeuralKnot = () => {
 const Scene3D = () => {
     return (
         <div className="scene-container">
-            <Canvas camera={{ position: [0, 0, 14], fov: 60 }} dpr={[1, 1.5]}>
+            <Canvas camera={{ position: [0, 0, 14], fov: 60 }} dpr={window.innerWidth < 768 ? 1 : [1, 1.5]}>
                 <fog attach="fog" args={['#050510', 8, 25]} />
                 <NeuralKnot />
             </Canvas>

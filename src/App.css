@@ -1,1 +1,10 @@
 /* Cleaned up for new styles */
+
+/* Global Mobile Optimization */
+@media (max-width: 768px) {
+    * {
+        /* Cap blur radius to reduce GPU cost without removing the effect */
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+    }
+}
