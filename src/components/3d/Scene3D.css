@@ -1,0 +1,31 @@
+.scene-container {
+    position: absolute;
+    /* Changed from fixed to absolute so it stays in Hero section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /* Covers the hero area */
+    z-index: 0;
+    /* Behind content but above background */
+    pointer-events: none;
+    /* Let clicks pass through */
+    overflow: hidden;
+}
+
+/* Ensure content sits above the 3D canvas */
+.hero-container,
+.projects-section,
+.skills-section,
+.contact-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Adjust hero background since we now have 3D */
+.hero-background {
+    opacity: 0.1;
+    /* Reduced opacity to let the dots shine through */
+    background: radial-gradient(circle at center, transparent 0%, #050510 100%);
+    /* Fade out edges */
+}

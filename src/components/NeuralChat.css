@@ -1,0 +1,275 @@
+@import './NeuralChatStatus.css';
+
+.neural-chat-wrapper {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: 'Courier New', Courier, monospace;
+    /* Tech font */
+}
+
+/* Holographic Toggle Button */
+.holographic-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(3, 218, 198, 0.1);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 0 15px var(--primary-color), inset 0 0 10px var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.holographic-btn:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 30px var(--primary-color);
+}
+
+/* Sci-fi Window */
+.sci-fi-border {
+    width: 350px;
+    background: rgba(5, 5, 10, 0.95);
+    border: 1px solid rgba(187, 134, 252, 0.3);
+    border-radius: 8px;
+    /* Sharper corners for sci-fi look */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), 0 0 5px rgba(187, 134, 252, 0.4);
+}
+
+/* Scanline Effect */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 255, 255, 0.05) 50%,
+            rgba(0, 255, 255, 0.05));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* HUD Corners */
+.hud-corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--secondary-color);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.top-left {
+    top: 5px;
+    left: 5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.top-right {
+    top: 5px;
+    right: 5px;
+    border-left: none;
+    border-bottom: none;
+}
+
+.bottom-left {
+    bottom: 5px;
+    left: 5px;
+    border-right: none;
+    border-top: none;
+}
+
+.bottom-right {
+    bottom: 5px;
+    right: 5px;
+    border-left: none;
+    border-top: none;
+}
+
+.chat-header {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--secondary-color);
+    text-shadow: 0 0 5px var(--secondary-color);
+}
+
+.pulse-icon {
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--secondary-color);
+    }
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #0f0;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #0f0;
+    margin-right: 10px;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-msg {
+    max-width: 85%;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    position: relative;
+    border-left: 2px solid transparent;
+}
+
+.chat-msg.bot {
+    align-self: flex-start;
+    background: rgba(187, 134, 252, 0.1);
+    color: var(--secondary-color);
+    border-left: 2px solid var(--secondary-color);
+}
+
+.chat-msg.user {
+    align-self: flex-end;
+    background: rgba(3, 218, 198, 0.15);
+    color: #fff;
+    border-right: 2px solid var(--primary-color);
+    text-align: right;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.input-zone {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quick-chips {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.chip-btn {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.chip-btn:hover {
+    background: var(--secondary-color);
+    color: #000;
+    box-shadow: 0 0 8px var(--secondary-color);
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 8px 10px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.chat-input-area input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(3, 218, 198, 0.2);
+}
+
+.send-btn {
+    background: var(--primary-color);
+    border: none;
+    color: #000;
+    padding: 0 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.send-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 2px;
+}

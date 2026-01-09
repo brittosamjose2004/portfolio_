@@ -1,0 +1,542 @@
+.hero-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    /* For header */
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary-color);
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--secondary-color);
+    bottom: 20%;
+    right: 10%;
+    animation-delay: -2s;
+}
+
+.orb-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--accent-color);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    33% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+
+    50% {
+        transform: translate(30px, -50px);
+    }
+
+    66% {
+        border-radius: 40% 60% 40% 60% / 40% 50% 70% 40%;
+    }
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Profile Image Magic - Cyber-Glass Prism Style */
+/* Profile Image Magic - Holographic Portal Style */
+.profile-prism-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-portal {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.portal-content {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(187, 134, 252, 0.3);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portal-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.5s ease;
+}
+
+.ring-1 {
+    width: 200px;
+    height: 200px;
+    border-top-color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    animation: spin 10s infinite linear;
+    opacity: 0.7;
+}
+
+.ring-2 {
+    width: 220px;
+    height: 220px;
+    border-left-color: var(--secondary-color);
+    border-right-color: var(--secondary-color);
+    animation: spin-reverse 15s infinite linear;
+    opacity: 0.5;
+}
+
+.ring-3 {
+    width: 240px;
+    height: 240px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    animation: spin 30s infinite linear;
+}
+
+.portal-glow {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(187, 134, 252, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    animation: pulse-glow 3s infinite ease-in-out;
+    z-index: 1;
+}
+
+.profile-prism-container:hover .ring-1 {
+    box-shadow: 0 0 20px rgba(187, 134, 252, 0.6);
+    border-color: var(--primary-color);
+}
+
+.profile-prism-container:hover .profile-img {
+    transform: scale(1.1);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-reverse {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Data Rain */
+.data-rain {
+    position: absolute;
+    color: var(--secondary-color);
+    font-family: monospace;
+    font-size: 1rem;
+    opacity: 0;
+    z-index: 1;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    animation: rain-fall 3s linear infinite;
+}
+
+.rain-1 {
+    right: -20px;
+    animation-delay: 0s;
+}
+
+.rain-2 {
+    left: -20px;
+    animation-delay: 1.5s;
+}
+
+@keyframes rain-fall {
+    0% {
+        top: -20px;
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+/* Orbiting Electron */
+.orbit-electron {
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    border: 1px solid rgba(187, 134, 252, 0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    z-index: 2;
+}
+
+.orbit-electron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: electron-spin 4s linear infinite;
+    offset-path: path("M0,30 a150,30 0 1,1 0,1 z");
+    /* Approximate ellipse path */
+    /* CSS Path for motion is complex, simple rotate is better for compatibility */
+}
+
+/* Simplified animation */
+.orbit-electron {
+    animation: orbit-rotate 6s linear infinite;
+}
+
+.orbit-electron::before {
+    top: -4px;
+    left: 50%;
+    offset-path: none;
+}
+
+@keyframes orbit-rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) skewX(20deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) skewX(20deg);
+    }
+}
+
+/* Floating Tech Icons around Profile */
+.floating-tech-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    z-index: 3;
+    animation: orbit 8s infinite linear;
+}
+
+.tech-1 {
+    animation-delay: 0s;
+}
+
+.tech-2 {
+    animation-delay: -2.6s;
+}
+
+.tech-3 {
+    animation-delay: -5.3s;
+}
+
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(120px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(120px) rotate(-360deg);
+    }
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to bottom, #fff, #a5a5a5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glitch Effect */
+.glitch-text {
+    position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch-text::before {
+    color: #ff00c1;
+    z-index: -1;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    color: #00fff9;
+    z-index: -2;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+        transform: translate(-2px, 0);
+    }
+
+    20% {
+        clip-path: inset(60% 0 1% 0);
+        transform: translate(2px, 0);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+        transform: translate(-2px, 0);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, 0);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-2px, 0);
+    }
+
+    100% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(2px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(2px, 0);
+    }
+
+    20% {
+        clip-path: inset(30% 0 20% 0);
+        transform: translate(-2px, 0);
+    }
+
+    40% {
+        clip-path: inset(70% 0 10% 0);
+        transform: translate(2px, 0);
+    }
+
+    60% {
+        clip-path: inset(50% 0 30% 0);
+        transform: translate(-2px, 0);
+    }
+
+    80% {
+        clip-path: inset(20% 0 50% 0);
+        transform: translate(2px, 0);
+    }
+
+    100% {
+        clip-path: inset(90% 0 5% 0);
+        transform: translate(-2px, 0);
+    }
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #a5a5a5;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+/* ... existing btn styles ... */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+@media (max-height: 700px) {
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    border-radius: 2px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        top: 10px;
+        opacity: 1;
+    }
+
+    100% {
+        top: 30px;
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-background {
+        opacity: 0.4;
+    }
+}

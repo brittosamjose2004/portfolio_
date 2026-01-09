@@ -1,0 +1,127 @@
+.holo-tilt-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    perspective: 1000px;
+    /* Essential for 3D */
+    transform-style: preserve-3d;
+}
+
+.holo-content {
+    padding: 15px;
+    background: transparent;
+    border-radius: 12px;
+    transform: translateZ(20px);
+    /* Lifts content off the card base */
+}
+
+.holo-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    border-radius: 12px;
+}
+
+.card-image-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 180px;
+    transform: translateZ(30px);
+    /* Images pop out more */
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    /* Hardware acceleration helps with filters */
+    will-change: transform;
+}
+
+.holo-tilt-card:hover .card-image {
+    transform: scale(1.1);
+    filter: url(#liquid-distortion);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.holo-tilt-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.view-text {
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.card-content {
+    padding-top: 15px;
+    transform: translateZ(40px);
+    /* Text floats highest */
+}
+
+.card-category {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin: 5px 0;
+    color: #fff;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 0.75rem;
+    color: #aaa;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+}

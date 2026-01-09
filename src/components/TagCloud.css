@@ -1,0 +1,47 @@
+.tag-cloud-wrapper {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    perspective: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-cloud-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+    /* Smooth update */
+    will-change: transform;
+}
+
+.tag-cloud-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.6);
+    white-space: nowrap;
+    backface-visibility: hidden;
+    /* Hide when behind? No, we want transparency */
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    user-select: none;
+}
+
+.tag-cloud-item:hover {
+    color: #fff;
+    background: var(--primary-color);
+    z-index: 10;
+    transform: scale(1.2);
+    /* This might conflict with the 3D translate */
+    cursor: pointer;
+}

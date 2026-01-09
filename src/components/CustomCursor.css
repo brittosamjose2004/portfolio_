@@ -1,0 +1,93 @@
+/* Main Cursor Container */
+.cursor-orb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Inner Core (White Dot) */
+.cursor-core {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px #fff;
+}
+
+/* Outer Aura (Rotating Glow) */
+.cursor-aura {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px dashed var(--primary-color);
+    border-radius: 50%;
+    animation: rotate-aura 4s linear infinite;
+    opacity: 0.6;
+}
+
+/* Hover State - Turns into a Target Reticle */
+.cursor-orb.hover .cursor-core {
+    background: var(--secondary-color);
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+.cursor-orb.hover .cursor-aura {
+    width: 50px;
+    height: 50px;
+    border-color: var(--secondary-color);
+    border-style: solid;
+    background: rgba(3, 218, 198, 0.1);
+    animation: none;
+    transition: all 0.3s ease;
+}
+
+/* Click State - Shrinks */
+.cursor-orb.click .cursor-aura {
+    transform: scale(0.8);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Magic Particles */
+.magic-particle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px currentColor;
+    transition: opacity 0.1s linear;
+}
+
+@keyframes rotate-aura {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (hover: none) {
+
+    .cursor-orb,
+    .magic-particle {
+        display: none;
+    }
+}
+
+body,
+a,
+button {
+    cursor: none;
+}
