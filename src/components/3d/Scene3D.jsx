@@ -7,10 +7,12 @@ import './Scene3D.css';
 const NeuralKnot = () => {
     const ref = useRef();
     const [hovered, setHovered] = useState(false);
+    const isMobile = window.innerWidth < 768;
 
     // Generate points on a Torus Knot for "Complex Geometry"
     const particleData = useMemo(() => {
-        const count = 1500; // Reduced for performance
+        const isMobile = window.innerWidth < 768;
+        const count = isMobile ? 400 : 1500; // Adaptive performance
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
         const baseColor = new THREE.Color("#bb86fc");
@@ -49,31 +51,34 @@ const NeuralKnot = () => {
             const pulse = Math.sin(time * 1.5) * 0.05 + 1; // Breathe between 0.95 and 1.05 scale
 
             // Scanner Effect: A wave of light passing through the mesh
-            const positions = ref.current.geometry.attributes.position.array;
-            const colors = ref.current.geometry.attributes.color.array;
-            const scanPos = Math.sin(time * 2) * 5; // Move scan wave back and forth
+            // Scanner Effect: A wave of light passing through the mesh (Desktop Only)
+            if (!isMobile) {
+                const positions = ref.current.geometry.attributes.position.array;
+                const colors = ref.current.geometry.attributes.color.array;
+                const scanPos = Math.sin(time * 2) * 5; // Move scan wave back and forth
 
-            const baseColor = new THREE.Color("#bb86fc");
-            const scanColor = new THREE.Color("#03dac6");
+                const baseColor = new THREE.Color("#bb86fc");
+                const scanColor = new THREE.Color("#03dac6");
 
-            for (let i = 0; i < particleData.positions.length / 3; i++) {
-                const y = positions[i * 3 + 1]; // Use Y axis for scan wave
+                for (let i = 0; i < particleData.positions.length / 3; i++) {
+                    const y = positions[i * 3 + 1]; // Use Y axis for scan wave
 
-                // Check if point is within scan band
-                const dist = Math.abs(y - scanPos);
-                if (dist < 1.5) {
-                    // Highlight
-                    colors[i * 3] = scanColor.r;
-                    colors[i * 3 + 1] = scanColor.g;
-                    colors[i * 3 + 2] = scanColor.b;
-                } else {
-                    // Reset to base
-                    colors[i * 3] = baseColor.r;
-                    colors[i * 3 + 1] = baseColor.g;
-                    colors[i * 3 + 2] = baseColor.b;
+                    // Check if point is within scan band
+                    const dist = Math.abs(y - scanPos);
+                    if (dist < 1.5) {
+                        // Highlight
+                        colors[i * 3] = scanColor.r;
+                        colors[i * 3 + 1] = scanColor.g;
+                        colors[i * 3 + 2] = scanColor.b;
+                    } else {
+                        // Reset to base
+                        colors[i * 3] = baseColor.r;
+                        colors[i * 3 + 1] = baseColor.g;
+                        colors[i * 3 + 2] = baseColor.b;
+                    }
                 }
+                ref.current.geometry.attributes.color.needsUpdate = true;
             }
-            ref.current.geometry.attributes.color.needsUpdate = true;
 
             // Apply pulse scale
             ref.current.scale.set(pulse, pulse, pulse);
@@ -106,7 +111,7 @@ const NeuralKnot = () => {
                 <PointMaterial
                     transparent
                     color="#fff"
-                    size={0.035} // Slightly larger for visibility
+                    size={isMobile ? 0.05 : 0.035} // Larger dots on mobile for better visibility with fewer count
                     sizeAttenuation={true}
                     depthWrite={false}
                     vertexColors
